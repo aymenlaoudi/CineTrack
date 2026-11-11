@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/output.css">
     <title>CineTrack</title>
 </head>
-<body class="bg-black flex flex-col">
-    <header class="flex bg-black">
-        <div class="flex w-1/3">
-            <img class="w-40" src="./img/logo.png" alt="logo">
-        </div>
-        <div class="flex w-2/3 items-center justify-center pr-10">
-            <input type="text" class="bg-[#2b2b34] h-10 w-full rounded-sm text-center text-white" placeholder="Search movies or series...">
-        </div>
-    </header>
-    <main id="test" class="grid grid-cols-3 grid-rows-3 bg-black">
-    </main>
-<script type="module" src="./js/main.js"></script>
-<script type="module" src="./js/api.js"></script>
+
+<body class="flex flex-col bg-black">
+    <section class="flex flex-col gap-12 w-2/3">
+        <aside class="fixed top-0 right-0 z-50 h-full w-72 overflow-y-auto bg-[#181818] p-4 text-white">
+            <h2 class="text-xl mb-4">Favorites</h2>
+            <div class="flex flex-col gap-2"></div>
+        </aside>
+        <header class="flex">
+            <div class="flex w-1/3">
+                <img class="w-40" src="./img/logo.png" alt="logo">
+            </div>
+        </header>
+        <main>
+            <section class="flex gap-4 p-4 border-white bg-gray-200">
+            <div class="flex w-2/3">
+                <input type="text" class="bg-[#2b2b34] h-10 w-full rounded-sm text-center text-white"
+                    placeholder="Search movies or series...">
+            </div>
+            <div class="flex w-1/3">
+                <select class="w-full bg-[#2b2b34] rounded-sm text-center text-white" name="filter" id="">
+                    <option value="">-- Select your choise</option>
+                    <option value="Tout">Tout</option>
+                    <option value="Movies">Movies</option>
+                    <option value="Series">Series</option>
+                </select>
+            </div>
+            </section>
+            <section id="test" class="grid grid-cols-4 gap-4 mx-4 my-4">
+            </section>
+        </main>
+    </section>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/api.js"></script>
 </body>
+
 </html>
