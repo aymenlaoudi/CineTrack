@@ -27,7 +27,7 @@ function showMovies(data) {
     const Movies = data.slice(startIndex, endIndex);
 
     if(Movies.length === 0){
-        test.innerHTML = "<div style='grid-column: 1 / -1' class='bg-white rounded-xl shadow-xl p-8 text-center text-3xl font-bold text-gray-500'>Trajet introuvable</div>"
+        test.innerHTML = "<div style='grid-column: 1 / -1' class='bg-white rounded-xl shadow-xl p-8 text-center text-3xl font-bold text-gray-500'>Tv show Introvable</div>"
         return
     }
     Movies.forEach(movie =>{
@@ -59,10 +59,26 @@ function showMovies(data) {
 
 showMovies(data)
 
+const filter = document.querySelector('#filter')
+
+function filterShows() {
+    const shows = filter.value
+    if(shows == ""){return showMovies(data)}
+    if(shows == 'Tout'){return showMovies(data)}
+    let movieType = data.filter(movie => movie.type == "movie")
+    if(shows == 'Movies'){return showMovies(movieType)}
+    let seriesType = data.filter(serie => serie.type == "series")
+    if(shows == 'Series'){return showMovies(seriesType)}
+    currentPage = 1
+}
+filter.addEventListener('change',() => {
+    const select =  filterShows()
+    console.log(select)
+})
 const btns = document.querySelectorAll('#pagination button')
 btns.forEach(function (btn,index) {
     btn.addEventListener('click',function () {
         currentPage = index + 1
-        showMovies(data)
+        filterShows(data)
     })
 })
