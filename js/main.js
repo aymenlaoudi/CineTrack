@@ -14,7 +14,7 @@ const test = document.querySelector('#test')
 //     card.append(image)
 // });
 
-let showsPerPage = 6 ;
+let showsPerPage = 8 ;
 let currentPage = 1 ;
 let currentdata = data
 
@@ -49,6 +49,7 @@ function showMovies(data) {
         </div>
         <div>
         <p class="text-white">${title}</p>
+        <p class="text-white">${releaseYear}</p>
         <p class="text-white">${type}</p>
         </div>`
     })
@@ -58,3 +59,10 @@ function showMovies(data) {
 
 showMovies(data)
 
+const btns = document.querySelectorAll('#pagination button')
+btns.forEach(function (btn,index) {
+    btn.addEventListener('click',function () {
+        currentPage = index + 1
+        showMovies(data)
+    })
+})
