@@ -8,10 +8,12 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-blue-200: oklch(88.2% 0.059 254.128);
+    --color-blue-800: oklch(42.4% 0.199 265.638);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
     --color-gray-200: oklch(92.8% 0.006 264.531);
-    --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
-    --color-gray-950: oklch(13% 0.028 261.692);
+    --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -21,8 +23,8 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
     --radius-sm: 0.25rem;
+    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
-    --radius-3xl: 1.5rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -188,9 +190,6 @@
   .z-50 {
     z-index: 50;
   }
-  .m-5 {
-    margin: calc(var(--spacing) * 5);
-  }
   .mx-4 {
     margin-inline: calc(var(--spacing) * 4);
   }
@@ -218,9 +217,6 @@
   .w-1 {
     width: var(--spacing);
   }
-  .w-1\/2 {
-    width: calc(1 / 2 * 100%);
-  }
   .w-1\/3 {
     width: calc(1 / 3 * 100%);
   }
@@ -245,26 +241,14 @@
   .resize {
     resize: both;
   }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .flex-col {
     flex-direction: column;
-  }
-  .items-center {
-    align-items: center;
-  }
-  .justify-between {
-    justify-content: space-between;
-  }
-  .justify-center {
-    justify-content: center;
-  }
-  .justify-end {
-    justify-content: flex-end;
-  }
-  .justify-start {
-    justify-content: flex-start;
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -272,11 +256,14 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
-  .gap-12 {
-    gap: calc(var(--spacing) * 12);
+  .gap-18 {
+    gap: calc(var(--spacing) * 18);
   }
   .overflow-y-auto {
     overflow-y: auto;
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
   }
   .rounded-sm {
     border-radius: var(--radius-sm);
@@ -291,26 +278,29 @@
   .border-white {
     border-color: var(--color-white);
   }
+  .bg-\[\#00001B\] {
+    background-color: #00001B;
+  }
+  .bg-\[\#00002B\] {
+    background-color: #00002B;
+  }
   .bg-\[\#2b2b34\] {
     background-color: #2b2b34;
   }
-  .bg-\[\#022D36\] {
-    background-color: #022D36;
+  .bg-\[\#00005B\] {
+    background-color: #00005B;
   }
-  .bg-\[\#022\] {
-    background-color: #022;
+  .bg-\[\#00007B\] {
+    background-color: #00007B;
   }
-  .bg-\[\#1560BD\] {
-    background-color: #1560BD;
+  .bg-\[\#00008B\] {
+    background-color: #00008B;
   }
   .bg-\[\#181818\] {
     background-color: #181818;
   }
   .bg-black {
     background-color: var(--color-black);
-  }
-  .bg-gray-200 {
-    background-color: var(--color-gray-200);
   }
   .bg-white {
     background-color: var(--color-white);
