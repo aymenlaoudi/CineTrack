@@ -41,7 +41,8 @@ function showMovies(data) {
         let directors = movie.directors
 
         const card = document.createElement('div')
-        card.classList = "bg-[#00001B] p-4 rounded-lg hover:-translate-y-2 cursor-pointer"
+        card.classList = "bg-[#00001B] p-4 rounded-lg hover:scale-90 transition duration-100 cursor-pointer"
+        card.id = `card_${id}`
         test.append(card)
         card.innerHTML = `
         <div>
@@ -57,7 +58,6 @@ function showMovies(data) {
         `
     })
 
-    // const carte = document.querySelectorAll('.carte')
 }
 
 showMovies(data)
@@ -97,3 +97,38 @@ btns.forEach(function (btn,index) {
         filterShows(data)
     })
 })
+
+const cards = document.querySelector('#test')
+const modal = document.querySelector('#modal-card')
+const p = document.querySelector('modal_parent')
+const content = document.querySelector('#content-modal')
+cards.addEventListener('click', (e) => {
+    const card = e.target.closest('[id^="card_"]')
+    if(!card) return
+
+    const id = card.id.replace('card_','')
+    const movie = data.find(m => m.id == id)
+    
+    content.innerHTML = `
+    <div class="grid grid-cols-2 gap-4">
+    <div class="flex flex-col justify-center">
+    <h2 class="text-3xl font-bold">Title : ${movie.title}</h2>
+    <span class="text-l font-bold">Type : ${movie.type}</span>
+    <span class="text-l font-bold">Duration : ${movie.duration} min</span>
+    <span class="text-l font-bold">Description : ${movie.description}</span>
+    <span class="text-l font-bold">Genres : ${movie.genres}</span>
+    </div>
+    <div>
+    <img class="rounded-xl" src="${movie.image}">
+    </div>
+    </div>
+    `
+    modal.classList.remove('hidden')
+    modal.classList.add('flex')
+ })
+    modal.addEventListener('click',(e) =>{
+        if(e.target === modal){
+            modal.classList.add('hidden')
+        }
+    })
+
