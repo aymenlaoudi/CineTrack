@@ -41,17 +41,20 @@ function showMovies(data) {
         let directors = movie.directors
 
         const card = document.createElement('div')
-        card.classList = "bg-[#00001B] p-4 rounded-lg"
+        card.classList = "bg-[#00001B] p-4 rounded-lg hover:-translate-y-2 cursor-pointer"
         test.append(card)
         card.innerHTML = `
+        <div>
         <div>
         <img class="rounded-lg" src="${image}">
         </div>
         <div>
-        <p class="text-white">${title}</p>
+        <p class="text-white font-bold text-lg">${title}</p>
         <p class="text-white">${releaseYear}</p>
-        <p class="text-white">${type}</p>
-        </div>`
+        <p class="text-white flex justify-end">${type}</p>
+        </div>
+        </div>
+        `
     })
 
     // const carte = document.querySelectorAll('.carte')
@@ -75,6 +78,18 @@ filter.addEventListener('change',() => {
     const select =  filterShows()
     console.log(select)
 })
+const search = document.querySelector('#search')
+function searchShows() {
+    const shows = search.value.toLowerCase().trim()
+    let searchShows = data.filter(show => show.title.toLowerCase().startsWith(shows))
+    currentPage = 1
+    showMovies(searchShows)
+}
+search.addEventListener('input',() => {
+    const s = searchShows()
+    console.log(s);
+})
+
 const btns = document.querySelectorAll('#pagination button')
 btns.forEach(function (btn,index) {
     btn.addEventListener('click',function () {
