@@ -1,18 +1,10 @@
 import { fetchData } from "./api.js";
-
+import { showFavourite, isFav, togFavorite} from "./favourites.js";
 const data = await fetchData('https://raw.githubusercontent.com/ouchad97/cinetrack-api/main/cinetrack-data.json')
 console.log(data);
 
 
 const test = document.querySelector('#test')
-// data.forEach(movie => {
-//     const section = document.createElement('section')
-//     const card = document.createElement('div')
-//     const img = movie.image
-//     test.append(section)
-//     section.append(card)
-//     card.append(image)
-// });
 
 let showsPerPage = 8 ;
 let currentPage = 1 ;
@@ -41,25 +33,32 @@ function showMovies(data) {
         let directors = movie.directors
 
         const card = document.createElement('div')
-        card.classList = "bg-[#00001B] p-4 rounded-lg hover:scale-90 transition duration-100 cursor-pointer"
+        card.classList = "bg-[#00002B] p-4 rounded-2xl hover:scale-97 transition duration-100 cursor-pointer"
         card.id = `card_${id}`
         test.append(card)
+        const fav = isFav(movie.id)
         card.innerHTML = `
-        <div>
-        <div>
+        <div class="flex flex-col gap-4 justify-between">
+        <div class="relative">
         <img class="rounded-lg" src="${image}">
+        <button class="fav-btn p-2 rounded-full bg-black/60 text-red-500 text-2xl absolute top-2 right-2" data-id="${id}">${fav ? '♥' : '♡'}</button>
         </div>
         <div>
-        <p class="text-white font-bold text-lg">${title}</p>
-        <p class="text-white">${releaseYear}</p>
-        <p class="text-white flex justify-end">${type}</p>
+        <p class="text-white font-bold text-lg">${title} (${releaseYear})</p>
         </div>
         </div>
         `
+        const favBtn = card.querySelector('.fav-btn')
+        favBtn.addEventListener('click',(e)=>{
+            e.stopPropagation()
+            togFavorite(movie)
+            favBtn.textContent = isFav(movie.id) ? '♥' : '♡'
+            showFavourite(()=>showMovies(data))
+        })
     })
-
 }
 
+showFavourite(() => showMovies(data))
 showMovies(data)
 
 const filter = document.querySelector('#filter')
@@ -111,7 +110,11 @@ cards.addEventListener('click', (e) => {
     console.log(movie)
     const duration = (movie.type === "movie") ? `${movie.duration} min` : `${movie.seasons.length} seasons`;
     content.innerHTML = `
+    <button class="close-modal absolute top-2 right-4 text-2xl">X</button>
     <div class="grid grid-cols-2 gap-4">
+    <div>
+    <img class="rounded-xl" src="${movie.image}">
+    </div>
     <div class="flex flex-col justify-center gap-4">
     <h2 class="text-2xl font-bold flex">Title : ${movie.title}</h2>
     <hr>
@@ -120,11 +123,12 @@ cards.addEventListener('click', (e) => {
     <span class="text-l font-semibold">Description : ${movie.description}</span>
     <span class="text-l font-semibold">Genres : ${movie.genres}</span>
     </div>
-    <div>
-    <img class="rounded-xl" src="${movie.image}">
-    </div>
     </div>
     `
+    const close_modal = content.querySelector('.close-modal')
+    close_modal.addEventListener('click',()=>{
+        modal.classList.add('hidden')
+    })
     modal.classList.remove('hidden')
     modal.classList.add('flex')
  })
@@ -133,4 +137,3 @@ cards.addEventListener('click', (e) => {
             modal.classList.add('hidden')
         }
     })
-
