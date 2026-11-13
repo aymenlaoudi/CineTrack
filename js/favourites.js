@@ -1,10 +1,10 @@
-// export function SaveFavorites(favorites) {
-//     localStorage.setItem('favorites',JSON.stringify(favorites))
-// }
+export function SaveFavorites(favorites) {
+    localStorage.setItem('favorites',JSON.stringify(favorites))
+}
 
-// export function getFavorites() {
-//     return JSON.parse(localStorage.getItem('favorites')) || []
-// }
+export function getFavorites() {
+    return JSON.parse(localStorage.getItem('favorites')) || []
+}
 
 let favorites =getFavorites()
 const favList = document.querySelector('#fav-list')
