@@ -41,21 +41,32 @@ function showMovies(data) {
         let directors = movie.directors
 
         const card = document.createElement('div')
-        card.classList = "bg-[#00001B] p-4 rounded-lg hover:scale-90 transition duration-100 cursor-pointer"
+        card.classList = "bg-[#00002B] p-4 rounded-2xl hover:scale-97 transition duration-100 cursor-pointer"
         card.id = `card_${id}`
         test.append(card)
         card.innerHTML = `
-        <div>
-        <div>
+        <div class="flex flex-col justify-between">
+        <div class="relative">
         <img class="rounded-lg" src="${image}">
+        <button class="fav-btn p-2 rounded-full bg-black/60 text-red-500 text-2xl absolute top-2 right-2" data-id="${id}">♡</button>
         </div>
         <div>
-        <p class="text-white font-bold text-lg">${title}</p>
-        <p class="text-white">${releaseYear}</p>
-        <p class="text-white flex justify-end">${type}</p>
+        <p class="text-white font-bold text-lg">${title} (${releaseYear})</p>
         </div>
+        <span class="text-white text-center bg-red-900">${type}</span>
         </div>
         `
+        const favBtn = card.querySelector('.fav-btn')
+        favBtn.addEventListener('click',(e)=>{
+            e.stopPropagation()
+            console.log(id)
+            if(favBtn.textContent === '♡'){
+                favBtn.textContent = '♥'
+                favBtn.classList.add('text-red-500')
+            } else {
+                favBtn.textContent = '♡'
+            }   
+        })
     })
 
 }
@@ -133,4 +144,3 @@ cards.addEventListener('click', (e) => {
             modal.classList.add('hidden')
         }
     })
-
