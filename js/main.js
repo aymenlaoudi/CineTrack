@@ -108,15 +108,17 @@ cards.addEventListener('click', (e) => {
 
     const id = card.id.replace('card_','')
     const movie = data.find(m => m.id == id)
-    
+    console.log(movie)
+    const duration = (movie.type === "movie") ? `${movie.duration} min` : `${movie.seasons.length} seasons`;
     content.innerHTML = `
     <div class="grid grid-cols-2 gap-4">
-    <div class="flex flex-col justify-center">
-    <h2 class="text-3xl font-bold">Title : ${movie.title}</h2>
-    <span class="text-l font-bold">Type : ${movie.type}</span>
-    <span class="text-l font-bold">Duration : ${movie.duration} min</span>
-    <span class="text-l font-bold">Description : ${movie.description}</span>
-    <span class="text-l font-bold">Genres : ${movie.genres}</span>
+    <div class="flex flex-col justify-center gap-4">
+    <h2 class="text-2xl font-bold flex">Title : ${movie.title}</h2>
+    <hr>
+    <span class="text-l font-semibold">Type : ${movie.type}</span>
+    <span class="text-l font-semibold">Duration : ${duration}</span>
+    <span class="text-l font-semibold">Description : ${movie.description}</span>
+    <span class="text-l font-semibold">Genres : ${movie.genres}</span>
     </div>
     <div>
     <img class="rounded-xl" src="${movie.image}">
