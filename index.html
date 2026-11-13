@@ -10,16 +10,13 @@
 
 <body class="flex flex-col bg-black">
     <section class="flex flex-col gap-18 w-4/4">
-        <header class="flex">
+        <header class="flex border-b border-gray-700">
             <div class="flex w-1/3">
-                <img class="w-40" src="./img/logo.png" alt="logo">
+                <a href="./index.html"><img class="w-40" src="./img/logo.png" alt="logo"></a>
             </div>
         </header>
-        <aside class="fixed top-0 right-0 z-50 h-full w-72 overflow-y-auto bg-[#181818] p-4 text-white">
-            <h2 class="text-xl mb-4">Favorites</h2>
-            <div class="flex flex-col gap-2"></div>
-        </aside>
-        <main class="w-3/4">
+        <div class="flex flex-col gap-4 md:flex-row gap-4">
+        <main class="w-full md:w-3/4">
             <section class="flex gap-4 p-4 border-white">
             <div class="flex w-2/3">
                 <input id="search" type="text" class="bg-[#2b2b34] h-10 w-full rounded-sm text-center text-white"
@@ -36,10 +33,10 @@
             </section>
             <section id="modal_parent">
             <div id="modal-card" class="items-center fixed hidden inset-0 justify-center backdrop-blur-sm z-50">
-                <div id="content-modal" class="w-[700px] max-w-[90%] min-h-[400px] bg-[#181818] text-white shadow-2xl rounded-lg p-6"></div>
+                <div id="content-modal" class="relative w-[700px] max-w-[90%] min-h-[400px] bg-[#181818] text-white shadow-2xl rounded-lg p-6"></div>
             </div>
             </section>
-            <section id="test" class="grid grid-cols-4 gap-4 mx-4 my-4">
+            <section id="test" class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-4 my-4">
             </section>
             <section id="pagination" class="flex justify-center gap-2 mb-20">
                 <button type="button"class="w-10 h-10 border-1 rounded-xl bg-white hover:bg-blue-500">1</button>
@@ -48,7 +45,18 @@
                 <button type="button" class="w-10 h-10 border-1 rounded-xl bg-white hover:bg-blue-500">4</button>
             </section>
         </main>
+        <div class="h-full w-full md:w-72 order-first md:order-none bg-[#181818] rounded-xl p-4 pb-12 text-white">
+            <h2 class="text-xl mb-4">Favorites</h2>
+            <hr><br>
+        <div id="fav-list" class="flex flex-col gap-2"></div>
+        </div>
+        </div>
     </section>
+    <footer class="border-t border-gray-700 mt-10 p-6 text-center text-gray-400">
+        <p class="text-white font-bold text-lg">CineTrack</p>
+        <p class="text-sm mt-2">Track your favorite movies and series</p>
+        <p class="text-xs mt-4">© 2026 CineTrack. All rights reserved.</p>
+    </footer>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/api.js"></script>
 </body>
