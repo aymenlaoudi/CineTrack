@@ -1,4 +1,3 @@
-# CineTrack
 # 🎬 CinéTrack
 
 CinéTrack est une application web qui permet de découvrir des films et des séries à partir d'une API MockAPI.
